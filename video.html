@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <link rel="icon" href="images/umrt_logo.png" type="image/x-icon">
+    <title>URRT - Qualification Videos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --dark: #0a0a1a;
+            --darker: #050510;
+            --light: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            width: 100%;
+            position: relative;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Video Card Styles */
+        .video-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(30, 41, 59, 0.8));
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-card:hover .video-overlay {
+            opacity: 1;
+        }
+        
+        /* Background Styles */
+        .video-page-bg {
+            background: linear-gradient(135deg, #0a0a1a 0%, #1e1b4b 50%, #0a0a1a 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+        }
+        
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* Floating Elements - hidden on mobile */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            opacity: 0.1;
+            filter: blur(40px);
+            z-index: 0;
+        }
+        
+        .floating-1 {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        .floating-2 {
+            width: 200px;
+            height: 200px;
+            bottom: 20%;
+            right: 10%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+        
+        .floating-3 {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 80%;
+            animation: float 30s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -50px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
+        }
+        
+        /* Webmaster Section */
+        .webmaster-container {
+            position: relative;
+            perspective: 1000px;
+            margin: 2rem auto;
+            max-width: 280px;
+            width: 100%;
+        }
+        
+        .webmaster-btn-3d {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: none;
+            border-radius: 1rem;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            box-shadow: 
+                inset 2px 2px 5px rgba(255, 255, 255, 0.1),
+                inset -2px -2px 5px rgba(0, 0, 0, 0.5),
+                0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .webmaster-btn-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 1rem;
+            z-index: -1;
+            transform: translateZ(-10px);
+            transition: all 0.4s ease;
+            opacity: 0;
+        }
+        
+        .webmaster-btn-3d:hover {
+            transform: rotateX(10deg) rotateY(10deg) translateZ(20px);
+        }
+        
+        .webmaster-btn-3d:hover::before {
+            opacity: 1;
+            transform: translateZ(-20px);
+            filter: blur(10px);
+        }
+        
+        .webmaster-btn-3d:active {
+            transform: rotateX(5deg) rotateY(5deg) translateZ(10px);
+        }
+        
+        .webmaster-icon-3d {
+            font-size: 1.25rem;
+            color: #60a5fa;
+            transform: translateZ(20px);
+            transition: all 0.4s ease;
+        }
+        
+        .webmaster-btn-3d:hover .webmaster-icon-3d {
+            color: #c4b5fd;
+            animation: spin 1s linear infinite;
+        }
+        
+        .webmaster-text-3d {
+            transform: translateZ(20px);
+            background: linear-gradient(90deg, #93c5fd, #ddd6fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.4s ease;
+            font-size: 0.95rem;
+        }
+        
+        .webmaster-btn-3d:hover .webmaster-text-3d {
+            letter-spacing: 1px;
+        }
+        
+        @keyframes spin {
+            0% { transform: translateZ(20px) rotate(0deg); }
+            100% { transform: translateZ(20px) rotate(360deg); }
+        }
+        
+        /* Tooltip */
+        .webmaster-tooltip {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(17, 24, 39, 0.9);
+            color: #c4b5fd;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            z-index: 100;
+        }
+        
+        .webmaster-container:hover .webmaster-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Video Badge */
+        .video-badge {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            z-index: 10;
+            white-space: nowrap;
+        }
+        
+        /* Video Stats */
+        .video-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 0.5rem;
+            margin-top: auto;
+        }
+        
+        .video-stats > div {
+            flex: 1 1 auto;
+            min-width: 120px;
+        }
+        
+        /* Loading Animation */
+        .video-loading {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 20;
+        }
+        
+        .video-card:hover .video-loading {
+            opacity: 1;
+        }
+        
+        /* Aspect ratio fix for videos */
+        .video-iframe-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .video-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* Contact Form Inputs */
+        .contact-form-input {
+            width: 100%;
+            background-color: #1f2937;
+            border: 1px solid #4b5563;
+            border-radius: 0.75rem;
+            padding: 0.75rem 2.5rem 0.75rem 1rem;
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .contact-form-input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .contact-form-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+        
+        select.contact-form-input {
+            appearance: none;
+            padding-right: 2.5rem;
+        }
+        
+        /* Mobile Navigation */
+        #mobile-menu {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 26, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            max-height: calc(100vh - 64px);
+            overflow-y: auto;
+        }
+        
+        /* Social Icons */
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+        }
+        
+        /* Map Container */
+        .map-container {
+            position: relative;
+            height: 250px;
+            width: 100%;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .map-container {
+                height: 300px;
+            }
+        }
+        
+        /* Responsive Container Padding */
+        .container {
+            width: 100%;
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: 1rem;
+            padding-left: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .container {
+                max-width: 640px;
+                padding-right: 1.5rem;
+                padding-left: 1.5rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px;
+                padding-right: 2rem;
+                padding-left: 2rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1024px;
+                padding-right: 2rem;
+                padding-left: 2rem;
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1280px;
+            }
+        }
+        
+        /* Image Responsive */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Logo Responsive */
+        .logo-img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        @media (min-width: 768px) {
+            .logo-img {
+                width: 56px;
+                height: 56px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .logo-img {
+                width: 64px;
+                height: 64px;
+            }
+        }
+        
+        .logo-text-img {
+            height: 28px;
+            width: auto;
+        }
+        
+        @media (min-width: 768px) {
+            .logo-text-img {
+                height: 40px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .logo-text-img {
+                height: 48px;
+            }
+        }
+        
+        /* Footer Responsive */
+        footer {
+            padding: 2rem 1rem;
+        }
+        
+        /* Section Spacing */
+        section {
+            padding: 3rem 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            section {
+                padding: 4rem 2rem;
+            }
+        }
+        
+        /* Floating Elements - Hide on small devices */
+        @media (max-width: 1024px) {
+            .floating-element {
+                display: none;
+            }
+        }
+        
+        /* Button and Link Touch Targets */
+        a, button {
+            min-height: 44px;
+            min-width: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Form Spacing */
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+        
+        /* Text Responsive */
+        .responsive-text-sm {
+            font-size: 0.875rem;
+        }
+        
+        @media (min-width: 768px) {
+            .responsive-text-sm {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Grid Gap Responsive */
+        .grid {
+            gap: 1.25rem;
+        }
+        
+        @media (min-width: 768px) {
+            .grid {
+                gap: 1.5rem;
+            }
+        }
+        
+        /* Card Content */
+        .card-content {
+            padding: 1rem;
+        }
+        
+        @media (min-width: 640px) {
+            .card-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="video-page-bg">
+    <!-- Floating Background Elements -->
+    <div class="floating-element floating-1"></div>
+    <div class="floating-element floating-2"></div>
+    <div class="floating-element floating-3"></div>
+    
+    <!-- Navigation -->
+    <nav class="bg-black bg-opacity-80 backdrop-blur-md fixed w-full z-50 border-b border-gray-800">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="flex items-center gap-2 md:gap-3 group">
+                        <img src="images/umrt_logo.png" alt="URRT Logo" class="logo-img rounded-full transition-all duration-300 group-hover:brightness-125 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-blue-500/30">
+                        <img src="images/urrt_text.png" alt="URRT" class="logo-text-img transition-all duration-300 group-hover:brightness-125 group-hover:scale-105">
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="flex items-center space-x-1 lg:space-x-2">
+                        <a href="index.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="Advisors.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Advisors</a>
+                        <a href="member.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Team</a>  
+                        <a href="#" class="nav-link text-white px-3 py-2 text-sm font-medium">Qualification Video</a>              
+                        <a href="#contact" class="nav-link text-white px-3 py-2 text-sm font-medium">Contact Us</a>
+                        <a href="join.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Join Us</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none p-2" aria-label="Menu">
+                        <i data-feather="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-3 text-base font-medium text-white hover:bg-gray-800 rounded-lg">Home</a>
+                    <a href="Advisors.html" class="block px-3 py-3 text-base font-medium text-white hover:bg-gray-800 rounded-lg">Advisors</a>
+                    <a href="member.html" class="block px-3 py-3 text-base font-medium text-white hover:bg-gray-800 rounded-lg">Team</a>
+                    <a href="#" class="block px-3 py-3 text-base font-medium text-white bg-gray-800 rounded-lg">Qualification Video</a>
+                    <a href="#contact" class="block px-3 py-3 text-base font-medium text-white hover:bg-gray-800 rounded-lg">Contact Us</a>
+                  <a href="join.html" class="block px-3 py-2 text-base font-medium text-white">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="pt-16">
+        <div class="py-12 md:py-16 lg:py-24 px-4 relative z-10">
+            <!-- Header Section -->
+            <div class="container mx-auto text-center mb-8 md:mb-12 lg:mb-16" data-aos="fade-up">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 gradient-text px-2">Qualification Videos</h1>
+                <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-6 md:mb-8 px-4">
+                    Showcasing our rescue rover capabilities through RoboCup Rescue qualification videos. Each video demonstrates critical functionalities required for competition entry.
+                </p>
+                <div class="inline-flex items-center px-3 py-2 md:px-4 md:py-2 bg-blue-500/20 border border-blue-500/30 rounded-full">
+                    <i data-feather="award" class="w-4 h-4 md:w-5 md:h-5 text-blue-400 mr-2"></i>
+                    <span class="text-xs sm:text-sm md:text-base text-blue-300">Official Submission Videos for RoboCup Rescue 2026</span>
+                </div>
+            </div>
+            
+            <!-- Videos Grid -->
+            <div class="container mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-12 md:mb-16">
+                    <!-- Video 1: Autonomous Navigation -->
+                    <div class="video-card rounded-xl sm:rounded-2xl overflow-hidden" data-aos="fade-up">
+                        <div class="relative">
+                            <div class="video-badge">Autonomy Test</div>
+                            <div class="video-iframe-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/xysBn_RJ4ks?si=Rr0bOMagpHBM2fGf"
+                                    title="Autonomous Navigation Video" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="video-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="text-base sm:text-lg md:text-xl font-bold mb-2 text-white">Autonomous Navigation</h3>
+                            <p class="text-gray-300 mb-3 text-xs sm:text-sm">Demonstrating autonomous path planning and obstacle avoidance capabilities in simulated disaster environments.</p>
+                            <div class="video-stats">
+                                <div class="flex items-center">
+                                    <i data-feather="clock" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mr-1 sm:mr-2"></i>
+                                    <span class="text-xs text-gray-400">2:45</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="calendar" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mr-1 sm:mr-2"></i>
+                                    <span class="text-xs text-gray-400">Nov 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 2: Survivor Detection -->
+                    <div class="video-card rounded-xl sm:rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative">
+                            <div class="video-badge">Detection Test</div>
+                            <div class="video-iframe-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/xgVbjqFUdvA?si=_2xX89_uVV5bUpqp" 
+                                    title="Survivor Detection Video" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="video-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="text-base sm:text-lg md:text-xl font-bold mb-2 text-white">Survivor Detection</h3>
+                            <p class="text-gray-300 mb-3 text-xs sm:text-sm">AI-powered survivor detection using thermal imaging and computer vision in low-visibility conditions.</p>
+                            <div class="video-stats">
+                                <div class="flex items-center">
+                                    <i data-feather="clock" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mr-1 sm:mr-2"></i>
+                                    <span class="text-xs text-gray-400">3:20</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="calendar" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mr-1 sm:mr-2"></i>
+                                    <span class="text-xs text-gray-400">Dec 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 3: Terrain Mobility -->
+                    <div class="video-card rounded-xl sm:rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative">
+                            <div class="video-badge">Mobility Test</div>
+                            <div class="video-iframe-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/uKANf94gSFs?si=gPG8ZjjsloU6z315" 
+                                    title="Terrain Mobility Video" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="video-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="text-base sm:text-lg md:text-xl font-bold mb-2 text-white">Extreme Terrain Mobility</h3>
+                            <p class="text-gray-300 mb-3 text-xs sm:text-sm">Testing rover capabilities on various surfaces including rubble, slopes, and uneven terrain.</p>
+                            <div class="video-stats">
+                                <div class="flex items-center">
+                                    <i data-feather="clock" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mr-1 sm:mr-2"></i>
+                                    <span class="text-xs text-gray-400">4:15</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="calendar" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mr-1 sm:mr-2"></i>
+                                    <span class="text-xs text-gray-400">Jan 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video 4: Dexterity Testing -->
+                    <div class="video-card rounded-xl sm:rounded-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative">
+                            <div class="video-badge">Dexterity Test</div>
+                            <div class="video-iframe-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/paUEfTt5tr4?si=KlmgCAsHRgKYvOOj" 
+                                    title="Dexterity Testing Video" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="video-overlay"></div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="text-base sm:text-lg md:text-xl font-bold mb-2 text-white">Dexterity Testing</h3>
+                            <p class="text-gray-300 mb-3 text-xs sm:text-sm">Robotic arm capabilities for object manipulation, door opening, and tool usage in confined spaces.</p>
+                            <div class="video-stats">
+                                <div class="flex items-center">
+                                    <i data-feather="clock" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mr-1 sm:mr-2"></i>
+                                    <span class="text-xs text-gray-400">3:50</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="calendar" class="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mr-1 sm:mr-2"></i>
+                                    <span class="text-xs text-gray-400">Feb 2025</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Video Requirements Info -->
+                <div class="bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-gray-800 p-4 sm:p-6 md:p-8 mb-12 md:mb-16 mx-2 sm:mx-0" data-aos="fade-up">
+                    <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-4 md:mb-6 gradient-text text-center">RoboCup Rescue Video Requirements</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                        <div class="space-y-3 md:space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
+                                        <i data-feather="check-circle" class="w-3 h-3 md:w-4 md:h-4 text-blue-400"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-2 md:ml-3">
+                                    <h4 class="font-semibold text-white text-sm md:text-base">Technical Specifications</h4>
+                                    <p class="text-xs md:text-sm text-gray-300">Max 5 min per video, 1080p resolution</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                                        <i data-feather="video" class="w-3 h-3 md:w-4 md:h-4 text-purple-400"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-2 md:ml-3">
+                                    <h4 class="font-semibold text-white text-sm md:text-base">Content Requirements</h4>
+                                    <p class="text-xs md:text-sm text-gray-300">Must demonstrate autonomous capabilities</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-3 md:space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-green-500/20 flex items-center justify-center">
+                                        <i data-feather="calendar" class="w-3 h-3 md:w-4 md:h-4 text-green-400"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-2 md:ml-3">
+                                    <h4 class="font-semibold text-white text-sm md:text-base">Submission Timeline</h4>
+                                    <p class="text-xs md:text-sm text-gray-300">Deadline: March 31, 2025</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-yellow-500/20 flex items-center justify-center">
+                                        <i data-feather="award" class="w-3 h-3 md:w-4 md:h-4 text-yellow-400"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-2 md:ml-3">
+                                    <h4 class="font-semibold text-white text-sm md:text-base">Evaluation Criteria</h4>
+                                    <p class="text-xs md:text-sm text-gray-300">Autonomy, reliability, speed, completion</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-12 md:py-16 px-4 bg-black bg-opacity-50">
+            <div class="container mx-auto">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 gradient-text" data-aos="fade-up">Contact Us</h2>
+                
+                <div class="grid lg:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Contact Info & Map -->
+                    <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                        <!-- Contact Information -->
+                        <div class="space-y-6 md:space-y-8" data-aos="fade-right">
+                            <div>
+                                <div class="flex justify-center mb-4">
+                                    <img src="images/aboutuslogo.png" alt="URRT Logo" class="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 rounded-full border-2 border-blue-500 shadow-lg shadow-blue-500/30">
+                                </div>
+                                <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 gradient-text text-center md:text-left">About URRT</h3>
+                                <p class="text-sm md:text-base text-gray-300 mb-4 md:mb-6 text-center md:text-left">The UIU Rescue Rover Team (URRT) is a group of passionate students dedicated to designing and building advanced rescue rovers for disaster response and emergency operations.</p>
+                            </div>
+                            
+                            <div class="space-y-4 md:space-y-6">
+                                <!-- Email -->
+                                <div class="flex items-center md:items-start group cursor-pointer">
+                                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-2 md:p-3 rounded-lg md:rounded-xl mr-3 md:mr-4 transition-all duration-300 group-hover:scale-110">
+                                        <i class="fas fa-envelope w-4 h-4 md:w-5 md:h-5 text-white"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="font-semibold text-white text-sm md:text-base mb-1">Email</h4>
+                                        <p class="text-xs md:text-sm text-gray-400 group-hover:text-blue-300 break-all">rescuerover@cair.uiu.ac.bd</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Phone -->
+                                <div class="flex items-center md:items-start group cursor-pointer">
+                                    <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-2 md:p-3 rounded-lg md:rounded-xl mr-3 md:mr-4 transition-all duration-300 group-hover:scale-110">
+                                        <i class="fas fa-phone w-4 h-4 md:w-5 md:h-5 text-white"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="font-semibold text-white text-sm md:text-base mb-1">Phone</h4>
+                                        <p class="text-xs md:text-sm text-gray-400 group-hover:text-purple-300">+880 1796-992356</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Address -->
+                                <div class="flex items-center md:items-start group cursor-pointer">
+                                    <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-2 md:p-3 rounded-lg md:rounded-xl mr-3 md:mr-4 transition-all duration-300 group-hover:scale-110">
+                                        <i class="fas fa-map-marker-alt w-4 h-4 md:w-5 md:h-5 text-white"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <h4 class="font-semibold text-white text-sm md:text-base mb-1">Address</h4>
+                                        <p class="text-xs md:text-sm text-gray-400 group-hover:text-blue-300">United International University</p>
+                                        <p class="text-xs text-gray-500">Dhaka, Bangladesh</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Social Media -->
+                            <div class="mt-4 md:mt-8">
+                                <h4 class="font-semibold text-white text-sm md:text-base mb-3 md:mb-4 text-center md:text-left">Follow Our Journey</h4>
+                                <div class="flex flex-wrap justify-center md:justify-start gap-2 md:gap-3">
+                                    <a href="https://www.facebook.com/share/1FaSe57Vd5/" class="social-icon bg-gradient-to-br from-blue-600 to-blue-700 p-2 md:p-3 rounded-lg md:rounded-xl transition-all duration-300 hover:scale-110" aria-label="Facebook">
+                                        <i class="fab fa-facebook-f w-4 h-4 md:w-5 md:h-5 text-white"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/uiurescuerover?igsh=MTVjeTY1cW9xeXV3aw==" class="social-icon bg-gradient-to-br from-purple-500 to-pink-500 p-2 md:p-3 rounded-lg md:rounded-xl transition-all duration-300 hover:scale-110" aria-label="Instagram">
+                                        <i class="fab fa-instagram w-4 h-4 md:w-5 md:h-5 text-white"></i>
+                                    </a>
+                                    <a href="#" class="social-icon bg-gradient-to-br from-blue-500 to-blue-600 p-2 md:p-3 rounded-lg md:rounded-xl transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
+                                        <i class="fab fa-linkedin-in w-4 h-4 md:w-5 md:h-5 text-white"></i>
+                                    </a>
+                                    <a href="#" class="social-icon bg-gradient-to-br from-red-500 to-red-600 p-2 md:p-3 rounded-lg md:rounded-xl transition-all duration-300 hover:scale-110" aria-label="YouTube">
+                                        <i class="fab fa-youtube w-4 h-4 md:w-5 md:h-5 text-white"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Map -->
+                        <div class="relative" data-aos="fade-left">
+                            <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl md:rounded-2xl p-4 md:p-6 border border-gray-700 h-full">
+                                <h3 class="text-lg md:text-xl font-bold mb-3 md:mb-4 text-white">Visit Our Campus</h3>
+                                <div class="map-container mb-3 md:mb-4">
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.598346556767!2d90.42461497504862!3d23.79810607863617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7b33c7b87cd%3A0x8c3881b66eeb7e0c!2sUnited%20International%20University!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd" 
+                                        width="100%" 
+                                        height="100%" 
+                                        style="border:0;" 
+                                        allowfullscreen="" 
+                                        loading="lazy"
+                                        title="University Location Map">
+                                    </iframe>
+                                </div>
+                                
+                                <div class="space-y-2 text-xs md:text-sm text-gray-300">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-map-signs text-blue-400 mr-2 w-4"></i>
+                                        <span class="flex-1">United City, Madani Avenue, Badda, Dhaka 1212</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-clock text-purple-400 mr-2 w-4"></i>
+                                        <span>Sun-Thu, 8AM-8PM</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-building text-green-400 mr-2 w-4"></i>
+                                        <span>CAIR Lab: 4th Floor</span>
+                                    </div>
+                                </div>
+                                
+                                <a href="https://maps.app.goo.gl/CwgAxRgJQgHv7Vjq8" target="_blank" class="w-full mt-3 md:mt-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-2 md:py-3 px-3 md:px-4 rounded-lg md:rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 text-sm md:text-base no-underline">
+                                    <i class="fas fa-directions"></i>
+                                    <span>Open in Maps</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div data-aos="fade-up" class="lg:col-span-1">
+                        <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl md:rounded-2xl p-4 md:p-6 lg:p-8 border border-gray-700">
+                            <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 gradient-text">Send Message</h3>
+
+                            <form class="space-y-4 md:space-y-6" id="contact-form">
+                                <div class="form-group">
+                                    <label class="block text-xs md:text-sm font-medium mb-1 md:mb-2 text-gray-300">Full Name</label>
+                                    <div class="relative">
+                                        <input type="text" id="contact-name" class="contact-form-input text-sm md:text-base" placeholder="Your name" required>
+                                        <div class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                                            <i class="fas fa-user text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="block text-xs md:text-sm font-medium mb-1 md:mb-2 text-gray-300">Email</label>
+                                    <div class="relative">
+                                        <input type="email" id="contact-email" class="contact-form-input text-sm md:text-base" placeholder="your@email.com" required>
+                                        <div class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+                                            <i class="fas fa-envelope text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="block text-xs md:text-sm font-medium mb-1 md:mb-2 text-gray-300">Subject</label>
+                                    <div class="relative">
+                                        <select id="contact-subject" class="contact-form-input text-sm md:text-base" required>
+                                            <option value="">Select subject</option>
+                                            <option value="Team Inquiry">Team Inquiry</option>
+                                            <option value="Collaboration">Collaboration</option>
+                                            <option value="Sponsorship">Sponsorship</option>
+                                            <option value="Recruitment">Recruitment</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <div class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                                            <i class="fas fa-chevron-down text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="block text-xs md:text-sm font-medium mb-1 md:mb-2 text-gray-300">Message</label>
+                                    <div class="relative">
+                                        <textarea id="contact-message" rows="3" class="contact-form-input text-sm md:text-base resize-none" placeholder="Your message..." required></textarea>
+                                        <div class="absolute right-3 top-3 text-gray-400">
+                                            <i class="fas fa-edit text-sm"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg md:rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 flex items-center justify-center space-x-2 text-sm md:text-base">
+                                    <span>Send</span>
+                                    <i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform text-sm"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Webmaster Button -->
+        <div class="webmaster-container" data-aos="fade-up" data-aos-delay="300">
+            <div class="webmaster-tooltip">
+                👨‍💻 Meet the developers
+            </div>
+            <a href="webmaster.html" class="webmaster-btn-3d">
+                <span class="webmaster-icon-3d">
+                    <i class="fas fa-code"></i>
+                </span>
+                <span class="webmaster-text-3d">Our Webmasters</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-90 py-6 md:py-8 px-4 border-t border-gray-800">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 md:gap-0">
+                <div class="flex justify-center md:order-2 space-x-4 md:space-x-6">
+                    <a href="https://www.facebook.com/share/1FaSe57Vd5/" class="text-gray-400 hover:text-white p-2" aria-label="Facebook">
+                        <i class="fab fa-facebook-f text-lg md:text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/uiurescuerover?igsh=MTVjeTY1cW9xeXV3aw==" class="text-gray-400 hover:text-white p-2" aria-label="Instagram">
+                        <i class="fab fa-instagram text-lg md:text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white p-2" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in text-lg md:text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white p-2" aria-label="YouTube">
+                        <i class="fab fa-youtube text-lg md:text-xl"></i>
+                    </a>
+                </div>
+                <div class="text-center md:order-1">
+                    <p class="text-xs md:text-sm text-gray-400">
+                        &copy; 2026 URRT - UIU Rescue Rover Team. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 600,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 30,
+            disable: window.innerWidth < 768 // Disable on mobile for performance
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenu.contains(e.target) && !menuButton.contains(e.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+            
+            // Close menu when clicking a link
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Contact form handling
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('contact-name').value;
+                const email = document.getElementById('contact-email').value;
+                const subject = document.getElementById('contact-subject').value;
+                const message = document.getElementById('contact-message').value;
+
+                const mailtoLink = `mailto:rescuerover@cair.uiu.ac.bd?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+                    `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+                )}`;
+
+                window.location.href = mailtoLink;
+            });
+        }
+        
+        // Video loading animation
+        document.querySelectorAll('.video-card').forEach(card => {
+            const iframe = card.querySelector('iframe');
+            const container = card.querySelector('.video-iframe-container');
+            
+            if (iframe && container) {
+                const loadingDiv = document.createElement('div');
+                loadingDiv.className = 'video-loading';
+                loadingDiv.innerHTML = '<div class="w-8 h-8 md:w-10 md:h-10 border-3 border-blue-500 border-t-transparent rounded-full animate-spin"></div>';
+                container.appendChild(loadingDiv);
+                
+                iframe.addEventListener('load', () => {
+                    loadingDiv.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingDiv.style.display = 'none';
+                    }, 300);
+                });
+            }
+        });
+        
+        // Re-initialize feather on window resize
+        window.addEventListener('resize', function() {
+            feather.replace();
+        });
+        
+        // Handle touch events for mobile
+        if ('ontouchstart' in window) {
+            document.documentElement.classList.add('touch');
+        }
+    </script>
+</body>
+</html>

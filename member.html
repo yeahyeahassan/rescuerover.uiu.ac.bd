@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Ensure proper scaling on all devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <link rel="icon" href="images/umrt_logo.png" type="image/x-icon">
+    <title>Team Members - URRT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --dark: #0a0a1a;
+            --darker: #050510;
+            --light: #e5e7eb;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            width: 100%;
+            max-width: 100vw;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Orbitron', sans-serif;
+            word-wrap: break-word;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* team member navigation */
+        .team-member-nav {
+            background: rgba(17, 24, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+            width: 100%;
+        }
+        
+        .team-member-nav ul {
+            display: flex;
+            justify-content: center;
+            padding: 0.75rem;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 0;
+        }
+        
+        .team-member-nav a {
+            color: #9ca3af;
+            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            display: inline-block;
+        }
+        
+        @media (min-width: 480px) {
+            .team-member-nav a {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        .team-member-nav a:hover {
+            color: white;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .team-member-nav a.active {
+            color: white;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .title-page {
+            background: linear-gradient(135deg, rgba(11, 15, 25, 0.9) 0%, rgba(29, 7, 47, 0.9) 100%);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .team-member-page-title {
+            font-size: 2rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 640px) {
+            .team-member-page-title {
+                font-size: 2.8rem;
+            }
+            .title-page {
+                padding: 3.5rem 1rem;
+            }
+        }
+        
+        /* Team members grid – fully responsive */
+        .team-members {
+            padding: 2.5rem 0.75rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .team-members h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #93c5fd;
+            padding: 0 0.5rem;
+        }
+        
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+            padding: 0 0.5rem;
+            width: 100%;
+        }
+        
+        .member-card {
+            background: rgba(31, 41, 55, 0.7);
+            border-radius: 1rem;
+            padding: 1.2rem 0.8rem;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 0;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            margin: 0 auto 1rem;
+            transition: transform 0.3s ease;
+            max-width: 100%;
+        }
+        
+        .member-card:hover .member-photo {
+            transform: scale(1.05);
+        }
+        
+        .member-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+            color: white;
+            word-wrap: break-word;
+            line-height: 1.3;
+        }
+        
+        .member-info p {
+            color: #93c5fd;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 400px) {
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .member-photo {
+                width: 130px;
+                height: 130px;
+            }
+        }
+        
+        @media (min-width: 640px) {
+            .members-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+            .member-photo {
+                width: 150px;
+                height: 150px;
+            }
+            .member-info h3 {
+                font-size: 1.1rem;
+            }
+            .member-info p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .members-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .team-members h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .members-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 2rem;
+            }
+            .member-photo {
+                width: 160px;
+                height: 160px;
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .members-grid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+        
+        /* Webmaster button responsive */
+        .webmaster-container {
+            position: relative;
+            perspective: 1000px;
+            margin: 2rem auto;
+            max-width: 280px;
+            padding: 0 1rem;
+            width: 100%;
+        }
+        
+        .webmaster-btn-3d {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.2rem;
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: none;
+            border-radius: 1rem;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            box-shadow: inset 2px 2px 5px rgba(255,255,255,0.1), inset -2px -2px 5px rgba(0,0,0,0.5), 0 10px 30px rgba(0,0,0,0.3);
+            width: 100%;
+        }
+        
+        .webmaster-btn-3d::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 1rem;
+            z-index: -1;
+            transform: translateZ(-10px);
+            transition: all 0.4s ease;
+            opacity: 0;
+        }
+        
+        .webmaster-btn-3d:hover {
+            transform: rotateX(8deg) rotateY(8deg) translateZ(15px);
+        }
+        
+        .webmaster-btn-3d:hover::before {
+            opacity: 1;
+            transform: translateZ(-18px);
+            filter: blur(8px);
+        }
+        
+        .webmaster-tooltip {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%) translateY(5px);
+            background: rgba(17, 24, 39, 0.95);
+            color: #c4b5fd;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            max-width: 90vw;
+            text-align: center;
+        }
+        
+        .webmaster-container:hover .webmaster-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Contact section responsive */
+        #contact {
+            padding: 2.5rem 0.75rem;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .contact-form-input {
+            width: 100%;
+            background-color: #1f2933;
+            border: 1px solid #4b5563;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+            font-size: 16px; /* Prevents zoom on iOS */
+        }
+        
+        .contact-form-input:focus {
+            border-color: transparent;
+            box-shadow: 0 0 0 2px #3b82f6;
+        }
+        
+        .map-container {
+            min-height: 220px;
+            height: auto;
+        }
+        
+        iframe {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            min-height: 220px;
+        }
+        
+        /* Footer responsive */
+        footer {
+            padding: 1.5rem 0.75rem;
+            width: 100%;
+        }
+        
+        /* mobile first adjustments */
+        .footer-logo {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+        }
+        
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        
+        .contact-item {
+            justify-content: flex-start;
+            word-break: break-word;
+        }
+        
+        @media (max-width: 480px) {
+            .grid.lg\:grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            .md\:grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            .social-icon {
+                padding: 0.6rem;
+            }
+        }
+        
+        /* fix for very small screens */
+        @media (max-width: 360px) {
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            .member-photo {
+                width: 140px;
+                height: 140px;
+            }
+            .team-member-nav a {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* img fluid */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* address & text wrap */
+        .text-gray-400, .text-gray-300, p, h3, h4 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        /* container max width */
+        .max-w-7xl {
+            max-width: 100%;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        
+        @media (min-width: 1280px) {
+            .max-w-7xl {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation (unchanged structure, works fine) -->
+    <nav class="bg-black bg-opacity-80 backdrop-blur-md fixed w-full z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="flex items-center group">
+                        <img src="images/umrt_logo.png" alt="URRT Logo" class="h-12 w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 rounded-full transition-all duration-300 group-hover:brightness-125 group-hover:scale-105 group-hover:shadow-lg group-hover:shadow-blue-500/30">
+                        <img src="images/urrt_text.png" alt="URRT" class="h-8 md:h-10 lg:h-12 ml-3 md:ml-4 transition-all duration-300 group-hover:brightness-125 group-hover:scale-105">
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="Advisors.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Advisors</a>
+                        <a href="member.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Team</a>  
+                        <a href="video.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Qualification Video</a>              
+                        <a href="#contact" class="nav-link text-white px-3 py-2 text-sm font-medium">Contact Us</a>
+                        <a href="join.html" class="nav-link text-white px-3 py-2 text-sm font-medium">Join Us</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white hover:text-gray-300 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-gray-900">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="index.html" class="block px-3 py-2 text-base font-medium text-white">Home</a>
+                    <a href="Advisors.html" class="block px-3 py-2 text-base font-medium text-white">Advisors</a>
+                    <a href="member.html" class="block px-3 py-2 text-base font-medium text-white">Team</a>
+                    <a href="video.html" class="block px-3 py-2 text-base font-medium text-white">Qualification Video</a>
+                    <a href="#contact" class="block px-3 py-2 text-base font-medium text-white">Contact Us</a>
+                    <a href="join.html" class="block px-3 py-2 text-base font-medium text-white">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+        
+    <!-- Main Content -->
+    <main class="pt-16">
+        <!-- Team Member Navigation Bar -->
+        <nav class="team-member-nav">
+            <ul>
+                <li><a href="" class="nav-link">2025</a></li>
+                <li><a href="#" class="nav-link active">2026</a></li>
+                <li><a href="" class="nav-link">Upcoming</a></li>
+            </ul>
+        </nav>
+
+        <div class="title-page">
+            <h1 class="team-member-page-title">2026 Team Members</h1>
+        </div>
+
+        <!-- Team Members Section (grid fully responsive) -->
+        <section class="team-members" data-aos="fade-up">
+            <h2>Team Members</h2>
+            <div class="members-grid">
+                <!-- member cards (all images paths kept as original) -->
+                <div class="member-card"><img loading="lazy" src="images/rois.jpg" alt="Dewan Rois" class="member-photo"><div class="member-info"><h3>Dewan Rois Bin Omar</h3><p>Electrical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/mahir.jpg" alt="Mahir Faisal" class="member-photo"><div class="member-info"><h3>Mahir Faisal Nafis</h3><p>Mechanical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/mathin.jpeg" alt="Mathin Ahmed" class="member-photo"><div class="member-info"><h3>Mathin Ahmed</h3><p>Software & Autonomous</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/yeahyea.jpeg" alt="Yeahyea Hassan" class="member-photo"><div class="member-info"><h3>Md. Yeahyea Hassan</h3><p>Electrical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/shoukhin.jpg" alt="Ahmed Jebail" class="member-photo"><div class="member-info"><h3>Ahmed Jebail Shoukhin</h3><p>Software & Autonomous</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/athin.jpg" alt="Nazmul Hasan" class="member-photo"><div class="member-info"><h3>Nazmul Hasan Athin</h3><p>Software & Autonomous</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/adipta.jfif" alt="Adipta Shaha" class="member-photo"><div class="member-info"><h3>Adipta Shaha</h3><p>Mechanical Team</p></div></div>
+                
+                <div class="member-card"><img loading="lazy" src="images/sokanto.jpeg" alt="Shokanta Roy" class="member-photo"><div class="member-info"><h3>Shokanta Roy</h3><p>Mechanical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/nowsad.jpg" alt="Nowshad Islam" class="member-photo"><div class="member-info"><h3>Nowshad Islam</h3><p>Mechanical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/nazmul.jpg" alt="Nazmul Hasan" class="member-photo"><div class="member-info"><h3>Nazmul Hasan Nayem</h3><p>Mechanical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/usha.jpg" alt="Jannatul Usha" class="member-photo"><div class="member-info"><h3>Jannatul Haque Usha</h3><p>Electrical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/simi.jpeg" alt="Tanjila Simi" class="member-photo"><div class="member-info"><h3>Tanjila Akter Simi</h3><p>Software & Autonomous</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/illin.jpg" alt="Dayad Illin" class="member-photo"><div class="member-info"><h3>Dayad Muhammad Illin</h3><p>Mechanical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/ifti.jpg" alt="Iftiaque Auporba" class="member-photo"><div class="member-info"><h3>Iftiaque Ahmed Auporba</h3><p>Mechanical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/saad.jpg" alt="Saad Tonmoy" class="member-photo"><div class="member-info"><h3>Saad Ahmmed Tonmoy</h3><p>Mechanical Team</p></div></div>
+                <div class="member-card"><img loading="lazy" src="images/salman.jpg" alt="Nurer Salmaan" class="member-photo"><div class="member-info"><h3>Nurer Raihan Salmaan</h3><p>Mechanical Team</p></div></div>
+                 <div class="member-card"><img loading="lazy" src="images/anik.jpg" alt="Nurer Salmaan" class="member-photo"><div class="member-info"><h3>Md. Mehedi Hasan Anik</h3><p>Mechanical Team</p></div></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Contact Section (responsive) -->
+    <section id="contact" class="bg-black bg-opacity-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 md:mb-12 gradient-text" data-aos="fade-up">Contact Us</h2>
+            
+            <div class="grid lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Contact Info & Map -->
+                <div class="lg:col-span-2 grid md:grid-cols-2 gap-6 md:gap-8">
+                    <!-- Contact Information -->
+                    <div class="space-y-6" data-aos="fade-right">
+                        <div class="flex justify-center mb-2">
+                            <img src="images/aboutuslogo.png" alt="URRT Logo" class="h-20 w-20 md:h-24 md:w-24 rounded-full border-2 border-blue-500 shadow-lg shadow-blue-500/30">
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-bold gradient-text">About URRT</h3>
+                        <p class="text-gray-300 text-sm md:text-base">The UIU Rescue Rover Team (URRT) is a group of passionate students dedicated to designing and building advanced rescue rovers for disaster response and emergency operations. Our mission is to leverage engineering innovation and autonomous technologies to assist in search, Rescue, and Life-saving missions.</p>
+                        
+                        <div class="space-y-4">
+                            <!-- Email -->
+                            <div class="flex items-start group">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl mr-3 transition-all duration-300 group-hover:scale-110 flex-shrink-0">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-semibold text-white text-sm md:text-base">Email</h4>
+                                    <p class="text-gray-400 text-xs md:text-sm break-all">rescuerover@cair.uiu.ac.bd</p>
+                                </div>
+                            </div>
+                            <!-- Phone -->
+                            <div class="flex items-start group">
+                                <div class="bg-gradient-to-br from-purple-500 to-purple-600 p-3 rounded-xl mr-3 transition-all flex-shrink-0">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-semibold text-white text-sm md:text-base">Phone</h4>
+                                    <p class="text-gray-400 text-xs md:text-sm">+880 1796-992356</p>
+                                </div>
+                            </div>
+                            <!-- Address -->
+                            <div class="flex items-start group">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl mr-3 transition-all flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="font-semibold text-white text-sm md:text-base">Address</h4>
+                                    <p class="text-gray-400 text-xs md:text-sm">United International University, Dhaka, Bangladesh</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Media -->
+                        <div class="mt-6">
+                            <h4 class="font-semibold text-white mb-3 text-sm md:text-base">Follow Our Journey</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <a href="https://www.facebook.com/share/1FaSe57Vd5/" class="bg-gradient-to-br from-blue-600 to-blue-700 p-3 rounded-xl transition-all hover:scale-110"><i class="fab fa-facebook-f text-white"></i></a>
+                                <a href="https://www.instagram.com/uiurescuerover?igsh=MTVjeTY1cW9xeXV3aw==" class="bg-gradient-to-br from-purple-500 to-pink-500 p-3 rounded-xl transition-all hover:scale-110"><i class="fab fa-instagram text-white"></i></a>
+                                <a href="#" class="bg-gradient-to-br from-blue-500 to-blue-600 p-3 rounded-xl transition-all hover:scale-110"><i class="fab fa-linkedin-in text-white"></i></a>
+                                <a href="#" class="bg-gradient-to-br from-red-500 to-red-600 p-3 rounded-xl transition-all hover:scale-110"><i class="fab fa-youtube text-white"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Interactive Map -->
+                    <div class="relative" data-aos="fade-left">
+                        <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-4 md:p-6 border border-gray-700 h-full">
+                            <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Visit Our Campus</h3>
+                            <div class="map-container relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 rounded-xl overflow-hidden border border-gray-600 mb-3" style="min-height:200px">
+                                <iframe class="absolute inset-0 w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.598346556767!2d90.42461497504862!3d23.79810607863617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7b33c7b87cd%3A0x8c3881b66eeb7e0c!2sUnited%20International%20University!5e0!3m2!1sen!2sbd!4v1700000000000!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                            <div class="space-y-1 text-xs md:text-sm text-gray-300">
+                                <div class="flex items-start"><i class="fas fa-map-signs text-blue-400 mr-2 mt-1"></i><span>United City, Madani Avenue, Badda, Dhaka 1212</span></div>
+                                <div class="flex items-start"><i class="fas fa-clock text-purple-400 mr-2 mt-1"></i><span>Sun-Thu, 8AM-8PM</span></div>
+                            </div>
+                            <a href="https://maps.app.goo.gl/CwgAxRgJQgHv7Vjq8" target="_blank" class="w-full mt-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium py-2.5 px-4 rounded-xl transition-all transform hover:scale-105 flex items-center justify-center space-x-2 text-sm no-underline">
+                                <i class="fas fa-directions"></i><span>Open in Google Maps</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div data-aos="fade-up">
+                    <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-5 md:p-8 border border-gray-700">
+                        <h3 class="text-xl md:text-2xl font-bold mb-5 gradient-text">Send Us a Message</h3>
+                        <form class="space-y-4" id="contact-form">
+                            <div><label class="block text-sm font-medium mb-1 text-gray-300">Full Name</label><input type="text" id="contact-name" class="contact-form-input" placeholder="Enter your name" required></div>
+                            <div><label class="block text-sm font-medium mb-1 text-gray-300">Email Address</label><input type="email" id="contact-email" class="contact-form-input" placeholder="your.email@example.com" required></div>
+                            <div><label class="block text-sm font-medium mb-1 text-gray-300">Subject</label>
+                                <select id="contact-subject" class="contact-form-input" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="Team Inquiry">Team Inquiry</option>
+                                    <option value="Collaboration">Collaboration</option>
+                                    <option value="Sponsorship">Sponsorship</option>
+                                    <option value="Recruitment">Recruitment</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div><label class="block text-sm font-medium mb-1 text-gray-300">Message</label><textarea id="contact-message" rows="4" class="contact-form-input resize-none" placeholder="Write your message..." required></textarea></div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25 flex items-center justify-center space-x-2 group">
+                                <span>Send Message</span><i class="fas fa-paper-plane group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Webmaster Button (responsive) -->
+    <div class="webmaster-container" data-aos="fade-up" data-aos-delay="300">
+        <div class="webmaster-tooltip">👨‍💻 Meet the developers behind the site</div>
+        <a href="webmaster.html" class="webmaster-btn-3d">
+            <span class="webmaster-icon-3d"><i class="fas fa-code"></i></span>
+            <span class="webmaster-text-3d">Our Webmasters</span>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-90 py-6 px-4 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div class="flex justify-center md:order-2 space-x-5">
+                    <a href="https://www.facebook.com/share/1FaSe57Vd5/" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/uiurescuerover?igsh=MTVjeTY1cW9xeXV3aw==" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="md:order-1">
+                    <p class="text-center text-xs sm:text-sm text-gray-400">&copy; 2026 URRT - UIU Rescue Rover Team. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+        document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("contact-name").value;
+            const email = document.getElementById("contact-email").value;
+            const subject = document.getElementById("contact-subject").value;
+            const message = document.getElementById("contact-message").value;
+            const mailtoLink = `mailto:rescuerover@cair.uiu.ac.bd?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            window.location.href = mailtoLink;
+        });
+    </script>
+</body>
+</html>
